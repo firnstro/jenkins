@@ -18,25 +18,21 @@ pipeline {
         }
    
     stage('Build') {
-          agent { 
-            node{
-              label "DockerServer"; 
-              }
-          }
           steps {
-              sh 'docker build https://github.com/AlissonMMenezes/Chapter10.git -t chapter10:latest'
+              sh 'exit 1'
           }
       }        
-      stage('Deploy') {
-          agent { 
-            node{
-              label "DockerServer"; 
-              }
-          }
+      stage('Delivery') {
           steps {
-              sh 'docker run -tdi -p 5000:5000 chapter10:latest'
+              sh 'exit 1'
           }
       }
+    stage('Deploy') {
+	steps {
+	   sh ' exit 1'
+	}
+    }
     }
 
 }
+
