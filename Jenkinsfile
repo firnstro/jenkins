@@ -1,34 +1,38 @@
 pipeline {
     agent  any;
     stages {
+        stage('Preparando el entorno') {
+            steps {
+                sh 'python -m pip install -r requirements.txt'
+            }
+        }
         stage('Calidad de código') {
             steps {
-                sh 'echo checking la calidad del código'
+                sh 'python -m pylint app.py'
             }
         }
-        stage('Test Unitario') {
+        stage('Tests') {
             steps {
-                sh 'echo comprobando la aplicación'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'echo creando paquete de aplicación'
+                sh 'python -m pytest'
             }
         }
    
-    stage('Entrega') {
-          
+    stage('Build') {
           steps {
-              sh 'echo realizando la entrega de software'
+              sh 'exit 1'
           }
       }        
-      stage('Deploy') {
-          
+      stage('Delivery') {
           steps {
-              sh 'echo desplegando'
+              sh 'exit 1'
           }
       }
-    
+    stage('Deploy') {
+	steps {
+	   sh ' exit 1'
 	}
+    }
+    }
+
 }
+
