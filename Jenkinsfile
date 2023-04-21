@@ -1,43 +1,37 @@
 pipeline {
     agent  any;
     stages {
-        stage('Preparing the environment') {
+        stage('Preparando el entorno') {
             steps {
-               withEnv(["HOME=${env.WORKSPACE}"]) {
-                sh '/usr/bin/pip install -r requirements.txt'
+                sh 'echo fase 1'
             }
         }
-        stage('Code Quality') {
+        stage('Calidad de código') {
             steps {
-                sh 'python3 -m pylint app.py'
+                sh 'echo fase 2'
             }
         }
         stage('Tests') {
             steps {
-                sh 'python3 -m pytest'
+                sh 'echo fase 3'
             }
         }
    
     stage('Build') {
-          agent { 
-            node{
-              label "DockerServer"; 
-              }
-          }
           steps {
-              sh 'docker build https://github.com/AlissonMMenezes/Chapter10.git -t chapter10:latest'
+              sh 'echo fase 4'
           }
       }        
-      stage('Deploy') {
-          agent { 
-            node{
-              label "DockerServer"; 
-              }
-          }
+      stage('Delivery') {
           steps {
-              sh 'docker run -tdi -p 5000:5000 chapter10:latest'
+              sh 'echo fase 5'
           }
       }
+    stage('Deploy') {
+	steps {
+	   sh ' echo fse 6'
+	}
+    }
     }
 
 }
