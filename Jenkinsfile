@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('Preparando el entorno') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh '/usr/bin/pip install -r requirements.txt'
             }
         }
         stage('Calidad de código') {
             steps {
-                sh 'python3 -m pylint app.py'
+                sh '/usr/bin/python3 -m pylint app.py'
             }
         }
         stage('Tests') {
             steps {
-                sh 'python3 -m pytest'
+                sh '/usr/bin/python3 -m pytest'
             }
         }
    
