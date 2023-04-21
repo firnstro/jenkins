@@ -1,19 +1,19 @@
 pipeline {
     agent  any;
     stages {
-        stage('Preparando el entorno') {
+        stage('Preparing the environment') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'python -m pip install -r requirements.txt'
             }
         }
-        stage('Calidad de código') {
+        stage('Code Quality') {
             steps {
-                sh 'python3 -m pylint app.py'
+                sh 'python -m pylint app.py'
             }
         }
         stage('Tests') {
             steps {
-                sh 'python3 -m pytest'
+                sh 'python -m pytest'
             }
         }
    
@@ -40,3 +40,4 @@ pipeline {
     }
 
 }
+
