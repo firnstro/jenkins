@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Preparing the environment') {
             steps {
-                sh 'pip3 install -r requirements.txt'
+                sh 'python3 -m pip install -r requirements.txt'
             }
         }
         stage('Code Quality') {
@@ -24,7 +24,7 @@ pipeline {
               }
           }
           steps {
-              sh 'docker build https://github.com/AlissonMMenezes/Chapter10.git -t chapter10:latest'
+              sh 'docker build https://github.com/firnstro/jenkins.git -t richijenkins:latest'
           }
       }        
       stage('Deploy') {
@@ -34,10 +34,9 @@ pipeline {
               }
           }
           steps {
-              sh 'docker run -tdi -p 5000:5000 chapter10:latest'
+              sh 'docker run -tdi -p 5000:5000 richijenkins:latest'
           }
       }
     }
 
 }
-
