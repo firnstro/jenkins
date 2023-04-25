@@ -49,7 +49,7 @@ pipeline {
           steps {
               sh 'whoami'
               sh 'hostname'
-              sh 'docker build https://github.com/firnstro/jenkins.git -t richijenkins:latest'
+              sh 'docker build https://github.com/richiinstructor/jenkins.git#main -t richijenkins:latest'
           }
       }        
       stage('Despliegue') {
