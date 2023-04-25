@@ -60,7 +60,7 @@ pipeline {
           steps {
               sh 'whoami'
               sh 'hostname'
-              sh 'docker run -tdi -p 5000:5000 richijenkins:latest'
+              sh 'docker run --name richiapp -tdi -p 5000:5000 richijenkins:latest'
           }
       }
     }
