@@ -10,6 +10,7 @@ pipeline {
           }
             steps {
                 sh 'whoami'
+                sh 'hostname'
                 sh 'python3 -m pip install -r requirements.txt'
             }
         }
@@ -20,6 +21,8 @@ pipeline {
                 }
             }
             steps {
+                 sh 'whoami'
+                sh 'hostname'
                 sh 'python3 -m pylint app.py'
             }
         }
@@ -30,6 +33,8 @@ pipeline {
                 }
             }           
             steps {
+                sh 'whoami'
+                sh 'hostname'
                 sh 'python3 -m pytest'
             }
         }
@@ -42,7 +47,7 @@ pipeline {
           }
           steps {
               sh 'whoami'
-
+              sh 'hostname'
               sh 'docker build https://github.com/firnstro/jenkins.git -t richijenkins:latest'
           }
       }        
@@ -54,7 +59,7 @@ pipeline {
           }
           steps {
               sh 'whoami'
-
+              sh 'hostname'
               sh 'docker run -tdi -p 5000:5000 richijenkins:latest'
           }
       }
