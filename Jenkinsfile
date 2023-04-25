@@ -9,6 +9,7 @@ pipeline {
               }
           }
             steps {
+                sh 'whoami'
                 sh 'python3 -m pip install -r requirements.txt'
             }
         }
@@ -40,6 +41,8 @@ pipeline {
               }
           }
           steps {
+              sh 'whoami'
+
               sh 'docker build https://github.com/firnstro/jenkins.git -t richijenkins:latest'
           }
       }        
@@ -50,6 +53,8 @@ pipeline {
               }
           }
           steps {
+              sh 'whoami'
+
               sh 'docker run -tdi -p 5000:5000 richijenkins:latest'
           }
       }
