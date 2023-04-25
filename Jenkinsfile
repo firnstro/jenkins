@@ -1,17 +1,32 @@
 pipeline {
-    agent  any;
     stages {
+
         stage('Preparando el entorno') {
+            agent { 
+            node{
+              label "objetivo1"; 
+              }
+          }
             steps {
                 sh 'python3 -m pip install -r requirements.txt'
             }
         }
         stage('Calidad de código') {
+            agent {
+                node {
+                    label "objetivo1";
+                }
+            }
             steps {
                 sh 'python3 -m pylint app.py'
             }
         }
         stage('Tests') {
+             agent {
+                node {
+                    label "objetivo1";
+                }
+            }           
             steps {
                 sh 'python3 -m pytest'
             }
@@ -20,7 +35,7 @@ pipeline {
     stage('construcción del artefacto') {
           agent { 
             node{
-              label "DockerServer"; 
+              label "objetivo2"; 
               }
           }
           steps {
@@ -30,7 +45,7 @@ pipeline {
       stage('Despliegue') {
           agent { 
             node{
-              label "DockerServer"; 
+              label "objetivo2"; 
               }
           }
           steps {
